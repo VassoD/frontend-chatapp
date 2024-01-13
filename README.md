@@ -12,16 +12,19 @@ This is a chat application built with React and Next.js. It allows users to have
 
 ## Getting Started
 
-\`\`\`bash
+```bash
 npm install
-\`\`\`
 
-\`\`\`bash  
+```
+
+```bash
 npm run start-server
-\`\`\`
 
-\`\`\`bash
-npm run dev  
-\`\`\`
+```
+
+```bash
+npm run dev
+
+```
 
 Open [http://localhost:3000](http://localhost:3000) to view the app in the browser.
