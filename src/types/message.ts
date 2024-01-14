@@ -4,5 +4,5 @@ export interface Message {
   authorId: number;
   timestamp: number;
   body: string;
-  isPrivate?: boolean;
+  isPrivate: boolean;
 }

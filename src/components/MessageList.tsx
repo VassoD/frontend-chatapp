@@ -25,10 +25,14 @@ const MessageList = ({
     <MessageContainer>
       {messages.map((message) => {
         const isSentByAuthor = message.authorId === currentUserId;
-
+        const timestamp = new Date(message.timestamp).toLocaleString();
         return (
           <MessageItem key={message.id} isSentByAuthor={isSentByAuthor}>
             {message.body}
+            <SmallText>
+              {isSentByAuthor ? " (sent by you)  " : ""}
+              {timestamp}
+            </SmallText>
           </MessageItem>
         );
       })}
@@ -43,7 +47,7 @@ const MessageContainer = styled.ul`
   padding: 0;
   margin: 0;
   display: flex;
-  flex-direction: column; /* Align messages vertically */
+  flex-direction: column;
 `;
 
 const MessageItem = styled.li<{ isSentByAuthor: boolean }>`
@@ -58,4 +62,10 @@ const MessageItem = styled.li<{ isSentByAuthor: boolean }>`
   white-space: pre-line;
   max-width: 70%;
   align-self: ${(props) => (props.isSentByAuthor ? "flex-end" : "flex-start")};
+`;
+
+const SmallText = styled.p`
+  font-size: 0.8rem;
+  margin-top: 0.25rem;
+  color: #999;
 `;

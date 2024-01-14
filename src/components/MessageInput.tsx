@@ -18,6 +18,7 @@ export const MessageInput = ({
   onSendMessage,
 }: MessageInputProps): JSX.Element => {
   const [newMessage, setNewMessage] = useState("");
+  const [isPrivate, setIsPrivate] = useState(false);
 
   const handleInputChange = (event) => {
     setNewMessage(event.target.value);
@@ -37,6 +38,10 @@ export const MessageInput = ({
     }
   };
 
+  const toggleMessageType = () => {
+    setIsPrivate((prev) => !prev);
+  };
+
   return (
     <InputContainer>
       <InputField
@@ -46,6 +51,10 @@ export const MessageInput = ({
         placeholder="Type your message..."
         onKeyDown={handleKeyDown}
       />
+      <ToggleButton onClick={toggleMessageType}>
+        <ToggleText isActive={isPrivate}>Private</ToggleText>
+        <ToggleText isActive={!isPrivate}>Public</ToggleText>
+      </ToggleButton>
       <SendButton onClick={handleSendMessage}>
         <AccessibleText>Send</AccessibleText>
         <IoIosSend />
@@ -98,4 +107,25 @@ const SendButton = styled.button`
   &:hover {
     background-color: #da6623;
   }
+`;
+
+const ToggleButton = styled.button`
+  border: 1px solid #ec6e24;
+  color: #ec6e24;
+  border: none;
+  font-size: 1rem;
+  border-radius: 4px;
+  padding: 1rem;
+  cursor: pointer;
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+`;
+
+const ToggleText = styled.span`
+  text-align: center;
+  opacity: ${(props) => (props.isActive ? 1 : 0.5)};
+  font-weight: ${(props) => (props.isActive ? "bold" : "normal")};
+  text-decoration: ${(props) => (props.isActive ? "underline" : "none")};
+  transition: opacity 0.3s, text-decoration 0.3s, font-weight 0.3s;
 `;
